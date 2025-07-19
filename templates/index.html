@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مرسيدس أصلية | قطع غيار 1990-1999</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.2/dist/gsap.min.js"></script>
+</head>
+<body>
+    <!-- 3D Background Element -->
+    <div class="three-d-bg"></div>
+    
+    <!-- Navigation Bar -->
+    <nav class="glass-nav">
+        <div class="container">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='images/mercedes-logo.png') }}" alt="Mercedes Logo">
+                <span>مرسيدس <strong>أصلية</strong></span>
+            </div>
+            <div class="nav-links">
+                <a href="#" class="active"><i class="fas fa-home"></i> الرئيسية</a>
+                <a href="#"><i class="fas fa-box-open"></i> المتجر</a>
+                <a href="#"><i class="fas fa-tools"></i> الورش</a>
+                <a href="#"><i class="fas fa-headset"></i> الدعم</a>
+                <div class="nav-cta">
+                    <a href="#" class="btn-cta"><i class="fab fa-whatsapp"></i> تواصل معنا</a>
+                </div>
+            </div>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section with 3D Model -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="highlight">قطع غيار</span> أصلية
+                    <br>لمرسيدس <span class="year-range">1990-1999</span>
+                </h1>
+                <p class="hero-subtitle">جودة المصنع مع ضمان لمدة عام على جميع القطع</p>
+                
+                <div class="search-tool">
+                    <div class="search-tabs">
+                        <button class="tab-btn active" data-tab="search-by-model">
+                            <i class="fas fa-car"></i> بحث بالموديل
+                        </button>
+                        <button class="tab-btn" data-tab="search-by-image">
+                            <i class="fas fa-camera"></i> بحث بالصورة
+                        </button>
+                    </div>
+                    
+                    <div class="tab-content active" id="search-by-model">
+                        <form id="modelSearchForm">
+                            <div class="form-group floating">
+                                <select id="carModel" required>
+                                    <option value=""></option>
+                                    <option value="C180">C180</option>
+                                    <option value="E200">E200</option>
+                                    <option value="S500">S500</option>
+                                </select>
+                                <label for="carModel"><i class="fas fa-car"></i> موديل السيارة</label>
+                            </div>
+                            <div class="form-group floating">
+                                <select id="manufactureYear" required>
+                                    <option value=""></option>
+                                    {% for year in range(1990, 2000) %}
+                                    <option value="{{ year }}">{{ year }}</option>
+                                    {% endfor %}
+                                </select>
+                                <label for="manufactureYear"><i class="fas fa-calendar"></i> سنة التصنيع</label>
+                            </div>
+                            <button type="submit" class="btn-primary">
+                                <i class="fas fa-search"></i> ابحث عن القطع
+                                <span class="hover-effect"></span>
+                            </button>
+                        </form>
+                    </div>
+                    
+                    <div class="tab-content" id="search-by-image">
+                        <form id="imageSearchForm">
+                            <div class="file-upload-area">
+                                <input type="file" id="partImage" accept="image/*">
+                                <label for="partImage">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <span class="upload-text">اسحب وأفلت صورة القطعة هنا أو انقر للاختيار</span>
+                                    <span class="file-types">(JPG, PNG, GIF)</span>
+                                </label>
+                                <div class="preview-container" id="imagePreview"></div>
+                            </div>
+                            <button type="submit" class="btn-primary">
+                                <i class="fas fa-search"></i> ابحث بالمطابقة
+                                <span class="hover-effect"></span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hero-visual">
+                <div class="car-3d-container">
+                    <!-- 3D model will be loaded here -->
+                    <div class="hero-image">
+                        <img src="{{ url_for('static', filename='images/mercedes_c180_1998.jpg') }}" alt="Mercedes C180 1998">
+                    </div>
+                </div>
+                <div class="part-highlight">
+                    <div class="part-tooltip">
+                        <div class="tooltip-arrow"></div>
+                        <div class="tooltip-content">
+                            <img src="{{ url_for('static', filename='images/freno.png') }}" alt="Brake Pad">
+                            <h4>طقم تيل فرامل</h4>
+                            <p>السعر: 45,000 د.ج</p>
+                            <a href="#" class="btn-small">اطلب الآن</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="hero-scroll-indicator">
+            <span>انتقل للأسفل</span>
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories-section">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="title-decorator"></span>
+                تصفح حسب التصنيف
+            </h2>
+            
+            <div class="categories-grid">
+                <a href="#" class="category-card" data-category="engine">
+                    <div class="category-icon">
+                        <img src="{{ url_for('static', filename='images/engine.png') }}" alt="Engine">
+                    </div>
+                    <h3>المحرك</h3>
+                    <p>+125 قطعة</p>
+                    <div class="hover-bg"></div>
+                </a>
+                
+                <!-- More categories... -->
+                <a href="#" class="category-card" data-category="brakes">
+                    <div class="category-icon">
+                        <img src="{{ url_for('static', filename='images/brakes.png') }}" alt="Brakes">
+                    </div>
+                    <h3>الفرامل</h3>
+                    <p>+86 قطعة</p>
+                    <div class="hover-bg"></div>
+                </a>
+                
+                <a href="#" class="category-card" data-category="electrical">
+                    <div class="category-icon">
+                        <img src="{{ url_for('static', filename='images/electrical.png') }}" alt="Electrical">
+                    </div>
+                    <h3>الكهرباء</h3>
+                    <p>+92 قطعة</p>
+                    <div class="hover-bg"></div>
+                </a>
+                
+                <a href="#" class="category-card" data-category="suspension">
+                    <div class="category-icon">
+                        <img src="{{ url_for('static', filename='images/suspension.png') }}" alt="Suspension">
+                    </div>
+                    <h3>التعليق</h3>
+                    <p>+64 قطعة</p>
+                    <div class="hover-bg"></div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="featured-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="title-decorator"></span>
+                    قطع غيار مميزة
+                </h2>
+                <a href="#" class="view-all">عرض الكل <i class="fas fa-arrow-left"></i></a>
+            </div>
+            
+            <div class="products-grid" id="featuredProducts">
+                <!-- Products will be loaded via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+   
+
+    <!-- Testimonials -->
+    <section class="testimonials-section">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="title-decorator"></span>
+                آراء عملائنا
+            </h2>
+            
+            <div class="testimonials-slider">
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "وجدت كل القطع التي أحتاجها لسيارتي مرسيدس 1995، الجودة ممتازة والسعر مناسب جداً مقارنة بالسوق. شكراً لكم على الخدمة المميزة!"
+                    </p>
+                    <div class="testimonial-author">
+                        <img src="{{ url_for('static', filename='images/testimonials/ahmed.jpg') }}" alt="Ahmed">
+                        <div class="author-info">
+                            <h4>أحمد محمد</h4>
+                            <span>مالك مرسيدس E200 1995</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- More testimonials... -->
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>هل لديك استفسار عن قطعة معينة؟</h2>
+                <p>فريق الدعم لدينا جاهز لمساعدتك على مدار الساعة</p>
+                <div class="cta-buttons">
+                    <a href="#" class="btn-primary">
+                        <i class="fab fa-whatsapp"></i> تواصل عبر واتساب
+                        <span class="hover-effect"></span>
+                    </a>
+                    <a href="#" class="btn-secondary">
+                        <i class="fas fa-phone"></i> اتصل بنا الآن
+                        <span class="hover-effect"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col footer-about">
+                    <div class="footer-logo">
+                        <img src="{{ url_for('static', filename='images/logo-mercedes-white.png') }}" alt="Mercedes Logo">
+                        <span>مرسيدس <strong>أصلية</strong></span>
+                    </div>
+                    <p class="footer-about-text">
+                        متخصصون في توفير قطع غيار مرسيدس أصلية للموديلات القديمة (1990-1999). نضمن لكم الجودة والأصالة مع خدمة عملاء مميزة.
+                    </p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col footer-links">
+                    <h3 class="footer-title">روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#">الرئيسية</a></li>
+                        <li><a href="#">المتجر</a></li>
+                        <li><a href="#">عروض خاصة</a></li>
+                        <li><a href="#">الأسئلة الشائعة</a></li>
+                        <li><a href="#">سياسة الإرجاع</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col footer-contact">
+                    <h3 class="footer-title">تواصل معنا</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> الجزائر  , تيندوف , تندوف </li>
+                        <li><i class="fas fa-phone"></i> +213 123 456 789</li>
+                        <li><i class="fab fa-whatsapp"></i> +213 987 654 321</li>
+                        <li><i class="fas fa-envelope"></i> contact@mercedes-original.com</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col footer-newsletter">
+                    <h3 class="footer-title">النشرة البريدية</h3>
+                    <p>اشترك لتصلك آخر العروض والقطع الجديدة</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="بريدك الإلكتروني">
+                        <button type="submit">
+                            <i class="fas fa-paper-plane"></i>
+                            <span class="hover-effect"></span>
+                        </button>
+                    </form>
+                    <div class="payment-methods">
+                        <img src="{{ url_for('static', filename='images/alge_post.png') }}" alt="Visa">
+                        <img src="{{ url_for('static', filename='images/mastercard.png') }}" alt="Mastercard">
+                        <img src="{{ url_for('static', filename='images/cash.png') }}" alt="Cash on Delivery">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="copyright">
+                    &copy; 2025 مرسيدس أصلية. جميع الحقوق محفوظة.
+                </div>
+                <div class="footer-legal">
+                    <a href="#">الشروط والأحكام</a>
+                    <a href="#">سياسة الخصوصية</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+<script>
+  const staticBaseUrl = "{{ url_for('static', filename='') }}";
+</script>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
